@@ -14,7 +14,21 @@ void memsInit() {
 }
 
 	
-
+//void LIS302DL_InterruptConfig(LIS302DL_InterruptConfigTypeDef *LIS302DL_IntConfigStruct)
+//{
+//  uint8_t ctrl = 0x00;
+//  
+//  /* Read CLICK_CFG register */
+//  LIS302DL_Read(&ctrl, LIS302DL_CLICK_CFG_REG_ADDR, 1);
+//  
+//  /* Configure latch Interrupt request, click interrupts and double click interrupts */                   
+//  ctrl = (uint8_t)(LIS302DL_IntConfigStruct->Latch_Request| \
+//                   LIS302DL_IntConfigStruct->SingleClick_Axes | \
+//                   LIS302DL_IntConfigStruct->DoubleClick_Axes);
+//  
+//  /* Write value to MEMS CLICK_CFG register */
+//  LIS302DL_Write(&ctrl, LIS302DL_CLICK_CFG_REG_ADDR, 1);
+//}
 
 
 

@@ -7,13 +7,13 @@ void gpioInit() {
 		// declare GPIO initializatio structure
 		GPIO_InitTypeDef gpio_init_s;
 	
-		// enable ADC and GPIO clocks
+		// enable GPIO clocks
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);												//for GPIO PE0
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);												//for EXTI line input
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);												//for LED
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);											//to get write access to SYSCFG_EXTICRx registers
 
-		// Servo output pins initialization
+		//  pins initialization
 		gpio_init_s.GPIO_Pin = GPIO_Pin_0; // Select pin 0 from GPIOE (for interrupt signal)
 		gpio_init_s.GPIO_Mode = GPIO_Mode_OUT; // Set as output
 		gpio_init_s.GPIO_Speed = GPIO_Speed_100MHz; // Don't limit slew rate

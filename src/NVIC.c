@@ -6,10 +6,13 @@ void nvicInit() {
 	
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
 	
-	init.NVIC_IRQChannel = 0;
-	init.NVIC_IRQChannelPreemptionPriority = 13;
+	init.NVIC_IRQChannel = EXTI0_IRQn ;
+	init.NVIC_IRQChannelPreemptionPriority = 0;
 	init.NVIC_IRQChannelSubPriority = 0;
 	init.NVIC_IRQChannelCmd = ENABLE;
+	
+	
+	//SysTick_CLKSourceConfig(uint32_t SysTick_CLKSource);
 }
 
 
