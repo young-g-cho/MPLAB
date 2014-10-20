@@ -86,6 +86,8 @@ memsReading getReading() {
 	data.y = (int8_t)(Buffer[2]) * 18 - Y_OFFSET;
 	data.z = (int8_t)(Buffer[4]) * 18 - Z_OFFSET;
 	
+
+	
 	return data;
 	
 }
@@ -94,5 +96,7 @@ void toAngles(memsReading *data, int32_t x, int32_t y, int32_t z) {
 	
 	data->pitch = 90 + atan(x / (sqrt(y*y+z*z)))*(180/PI);
 	data->roll = 90 + atan(y / (sqrt(x*x+z*z)))*(180/PI);
+	
+	//printf("pitch : %f, roll: %f \n", data->pitch, data->roll);
 	
 }

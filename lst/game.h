@@ -4,5 +4,6 @@
 void startGame (float angle);
 void checkAnswer ();
 void userInput ();
-void showAnswer ( );
+void showAnswer ();
 void isGameOver ();
+void printAnswer();

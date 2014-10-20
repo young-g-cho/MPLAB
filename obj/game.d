@@ -1,5 +1,7 @@
 .\obj\game.o: src\game.c
 .\obj\game.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\obj\game.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\string.h
+.\obj\game.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdio.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include\stm32f4xx.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm4.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmInstr.h
@@ -37,3 +39,4 @@
 .\obj\game.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\obj\game.o: .\lst\game.h
 .\obj\game.o: .\lst\keypad.h
+.\obj\game.o: .\lst\7segment.h
