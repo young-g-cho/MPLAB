@@ -44,7 +44,6 @@ int main(){
 	
 	while(1){
 		
-		
 			if(tick) {
 				
 				tick = 0;
@@ -93,12 +92,9 @@ int main(){
 					}				
 			}
 	
-		
-	
-	}
 	
 	
-	
+} //end while
 	
 	return 0;
 }
