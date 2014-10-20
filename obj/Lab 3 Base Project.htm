@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\Lab 3 Base Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\Lab 3 Base Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Mon Oct 20 11:25:01 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Mon Oct 20 11:57:04 2014
 <BR><P>
 <H3>Maximum Stack Usage =        264 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -364,7 +364,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;searchRow
 </UL>
 
-<P><STRONG><a name="[94]"></a>columnAsInput</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, keypad.o(.text))
+<P><STRONG><a name="[94]"></a>columnAsInput</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, keypad.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = columnAsInput &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
@@ -372,12 +372,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;searchColumn
 </UL>
 
-<P><STRONG><a name="[95]"></a>searchRow</STRONG> (Thumb, 120 bytes, Stack size 8 bytes, keypad.o(.text))
+<P><STRONG><a name="[95]"></a>searchRow</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, keypad.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = searchRow &rArr; rowAsInput &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rowAsInput
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyState
 </UL>
@@ -386,13 +385,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;searchColumn
 </UL>
 
-<P><STRONG><a name="[97]"></a>searchColumn</STRONG> (Thumb, 216 bytes, Stack size 16 bytes, keypad.o(.text))
+<P><STRONG><a name="[97]"></a>searchColumn</STRONG> (Thumb, 168 bytes, Stack size 16 bytes, keypad.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = searchColumn &rArr; columnAsInput &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;debounce
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;columnAsInput
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 </UL>
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyState
 </UL>
@@ -558,8 +556,6 @@ Global Symbols
 
 <P><STRONG><a name="[8d]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LIS302DL_LowLevel_Init
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;searchColumn
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;searchRow
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkAnswer
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LIS302DL_Write
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LIS302DL_Read

@@ -24,13 +24,13 @@ void rowAsInput () {
 		gpio_init_s.GPIO_Mode = GPIO_Mode_IN; // Set as input
 		gpio_init_s.GPIO_Speed = GPIO_Speed_100MHz; // Don't limit slew rate
 		gpio_init_s.GPIO_OType = GPIO_OType_PP; // Push-pull
-		gpio_init_s.GPIO_PuPd = GPIO_PuPd_DOWN; //
+		gpio_init_s.GPIO_PuPd = GPIO_PuPd_UP; //
 		GPIO_Init(GPIOD,&gpio_init_s); //
 	
 		//COLUMNS
 		gpio_init_s.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10;
 		gpio_init_s.GPIO_Mode = GPIO_Mode_OUT; // 
-		gpio_init_s.GPIO_PuPd = GPIO_PuPd_NOPULL; //
+		gpio_init_s.GPIO_PuPd = GPIO_PuPd_DOWN; //
 		GPIO_Init(GPIOD,&gpio_init_s); //
 	
 }
@@ -44,13 +44,13 @@ void columnAsInput () {
 		gpio_init_s.GPIO_Mode = GPIO_Mode_OUT; // Set as output
 		gpio_init_s.GPIO_Speed = GPIO_Speed_100MHz; // Don't limit slew rate
 		gpio_init_s.GPIO_OType = GPIO_OType_PP; // Push-pull
-		gpio_init_s.GPIO_PuPd = GPIO_PuPd_NOPULL; // 
+		gpio_init_s.GPIO_PuPd = GPIO_PuPd_DOWN; // 
 		GPIO_Init(GPIOD,&gpio_init_s); //
 	
 		//COLUMNS
 		gpio_init_s.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10;
 		gpio_init_s.GPIO_Mode = GPIO_Mode_IN; // Set as input
-		gpio_init_s.GPIO_PuPd = GPIO_PuPd_DOWN; //
+		gpio_init_s.GPIO_PuPd = GPIO_PuPd_UP; //
 		GPIO_Init(GPIOD,&gpio_init_s); //
 	
 	
@@ -76,36 +76,32 @@ void searchColumn () {
 		uint8_t key = 0x0, key2 = 0x0;
 	
 		columnAsInput();
-		GPIO_SetBits(GPIOD, GPIO_Pin_1);
-		GPIO_SetBits(GPIOD, GPIO_Pin_2);
-		GPIO_SetBits(GPIOD, GPIO_Pin_3);
-		GPIO_SetBits(GPIOD, GPIO_Pin_6);
 			
-		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_7) == 0x1) {
+		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_7) == 0x0) {
 				key = 0x1;	
 					
-		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_8) == 0x1) {
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_8) == 0x0) {
 				key = 0x2;	
 					
-		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_9) == 0x1) {
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_9) == 0x0) {
 				key = 0x4;
 					
-		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_10) == 0x1) {
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_10) == 0x0) {
 				key = 0x8;
 		} 
 	
 		debounce();
 
-				if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_7) == 0x1) {
+				if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_7) == 0x0) {
 				key2 = 0x1;	
 					
-		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_8) == 0x1) {
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_8) == 0x0) {
 				key2 = 0x2;	
 					
-		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_9) == 0x1) {
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_9) == 0x0) {
 				key2 = 0x4;
 					
-		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_10) == 0x1) {
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_10) == 0x0) {
 				key2 = 0x8;
 		} 
 		
@@ -124,21 +120,17 @@ void searchRow () {
 		uint8_t key = 0x0;
 	
 		rowAsInput();
-		GPIO_SetBits(GPIOD, GPIO_Pin_7);
-		GPIO_SetBits(GPIOD, GPIO_Pin_8);
-		GPIO_SetBits(GPIOD, GPIO_Pin_9);
-		GPIO_SetBits(GPIOD, GPIO_Pin_10);
 		
-		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_1) == 0x1) {
+		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_1) == 0x0) {
 			key = 0x10;	
 			
-		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_2) == 0x1) {
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_2) == 0x0) {
 			key = 0x20;	
 			
-		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_3) == 0x1) {
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_3) == 0x0) {
 				key = 0x40;
 			
-		}else	if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_6) == 0x1) {
+		}else	if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_6) == 0x0) {
 				key = 0x80;
 		}
 

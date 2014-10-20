@@ -20,7 +20,6 @@ uint8_t decimal = 0;
 uint8_t gameState;    //1 for playing, 2 for gameOver(player loss) 3 for gameOver(player Win)
 uint8_t numLED = 0;				//LED tracker
 
-uint8_t hold;
 
 MovingAverageFilter x;
 MovingAverageFilter y;
