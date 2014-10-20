@@ -7,8 +7,8 @@
 .\obj\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmFunc.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm4_simd.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include\system_stm32f4xx.h
-.\obj\main.o: E:\ECSE 426\lab3\RTE\Device\STM32F407VG\stm32f4xx_conf.h
-.\obj\main.o: E:\ECSE 426\lab3\RTE\RTE_Components.h
+.\obj\main.o: H:\ECSE 426\lab3\RTE\Device\STM32F407VG\stm32f4xx_conf.h
+.\obj\main.o: H:\ECSE 426\lab3\RTE\RTE_Components.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_adc.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include\stm32f4xx.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_crc.h
@@ -36,3 +36,9 @@
 .\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_dac.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_dcmi.h
 .\obj\main.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_fsmc.h
+.\obj\main.o: .\lst\accelerometer.h
+.\obj\main.o: .\lst\led.h
+.\obj\main.o: .\lst\filter.h
+.\obj\main.o: .\lst\7segment.h
+.\obj\main.o: .\lst\keypad.h
+.\obj\main.o: .\lst\game.h
