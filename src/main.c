@@ -7,6 +7,8 @@
 #include "7segment.h"
 #include "keypad.h"
 #include "game.h"
+//#include "servoControl.c"
+
 
 memsReading data;
 
@@ -34,6 +36,7 @@ int main(){
 	initKeypad ();
 	intiTIMAndNVIC ();
 	initLED ();
+	//initPanel();
 	
 	initFilter(&x);
 	initFilter(&y);
@@ -41,6 +44,8 @@ int main(){
 	
 	uint8_t gameInit = 0;
 	uint8_t delay =0;
+	
+
 	
 	while(1){
 		
