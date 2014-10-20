@@ -59,7 +59,7 @@ void TIM3_IRQHandler() {
 	
 		if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET) {
 			
-				if(refresh > 4) {
+				if(refresh > 3) {
 						refresh = 0;
 				} else {
 						refresh ++;																																							//max 4 
@@ -69,7 +69,7 @@ void TIM3_IRQHandler() {
 }
 
 // mode = 0 => normal mode , mode = 1 => display game correct answer
-void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation) {
+void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t degree_on) {
 		
 		GPIO_ResetBits(GPIOE, GPIO_Pin_15 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10| GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14);
 		GPIO_SetBits(GPIOB, GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14);
@@ -91,7 +91,8 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation) {
 			}
 
 		// degree sign always ON
-		GPIO_SetBits(GPIOE, GPIO_Pin_11);
+		if (degree_on != 0)
+			GPIO_SetBits(GPIOE, GPIO_Pin_11);
 		
 		
 		switch (digit) {
@@ -164,6 +165,32 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation) {
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
+			break;
+			case 'Y':
+					GPIO_SetBits(GPIOE, GPIO_Pin_4);
+					GPIO_SetBits(GPIOE, GPIO_Pin_5);
+					GPIO_SetBits(GPIOE, GPIO_Pin_8);
+					GPIO_SetBits(GPIOE, GPIO_Pin_9);
+					GPIO_SetBits(GPIOE, GPIO_Pin_6);
+			break;
+			case 'E':
+					GPIO_SetBits(GPIOE, GPIO_Pin_15);
+					GPIO_SetBits(GPIOE, GPIO_Pin_6);
+					GPIO_SetBits(GPIOE, GPIO_Pin_7);
+					GPIO_SetBits(GPIOE, GPIO_Pin_8);
+					GPIO_SetBits(GPIOE, GPIO_Pin_9);				
+			break;
+			case 'S':
+					GPIO_SetBits(GPIOE, GPIO_Pin_15);
+					GPIO_SetBits(GPIOE, GPIO_Pin_5);
+					GPIO_SetBits(GPIOE, GPIO_Pin_6);
+					GPIO_SetBits(GPIOE, GPIO_Pin_8);
+					GPIO_SetBits(GPIOE, GPIO_Pin_9);
+			break;
+			case 'L':
+					GPIO_SetBits(GPIOE, GPIO_Pin_6);
+					GPIO_SetBits(GPIOE, GPIO_Pin_7);
+					GPIO_SetBits(GPIOE, GPIO_Pin_8);	
 			break;
 		}
 	

@@ -60,18 +60,42 @@ int main(){
 				//printf("roll = %d\n",data.roll);
 				//printf("pitch = %d\n",data.pitch);
 				
-			} else { 
-
-					if(gameState == 1)                                     //
-							userInput();	
-
-					if(refresh == 1) {
-							numDisplay (decimal, first, 1);
-					} else if(refresh == 2) {
-							numDisplay (decimal, second,2);
-					} else if(refresh == 3) {
-							numDisplay (decimal, third, 3);
+			} else { 	
+					
+				if (gameState == 1){
+					
+					userInput();
+					
+					//update screen if game is not over
+						if(refresh == 1) {
+								numDisplay (decimal, first, 1,1);
+					} 	else if(refresh == 2) {
+								numDisplay (decimal, second,2,1);
+					} 	else if(refresh == 3) {
+								numDisplay (decimal, third, 3,1);
 					}
+				}
+				
+				else {
+						
+						if (gameState == 3)
+						{
+							numDisplay(0,'Y',1,0);
+							numDisplay(0,'E',2,0);
+							numDisplay(0,'S',3,0);
+						
+						}
+						
+						else
+						{
+							numDisplay(0,'L',1,0);
+							numDisplay(0,'0',2,0);
+							numDisplay(0,'S',3,0);
+							numDisplay(0,'E',4,0);							
+						}	
+						
+					}
+
 
 							//LED blinking for player win or loss
 								if(gameState == 2) {
@@ -91,8 +115,8 @@ int main(){
 							delay++;
 					}				
 			}
-	
-	
+
+
 	
 } //end while
 	
