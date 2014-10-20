@@ -96,7 +96,20 @@ void searchColumn () {
 	
 		debounce();
 
-//		if(key == key2) {
+				if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_7) == 0x1) {
+				key2 = 0x1;	
+					
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_8) == 0x1) {
+				key2 = 0x2;	
+					
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_9) == 0x1) {
+				key2 = 0x4;
+					
+		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_10) == 0x1) {
+				key2 = 0x8;
+		} 
+		
+		if(key == key2) {
 				if(key == 0x0) {
 						buttonState = KEY_RELEASED;
 				} else {
@@ -104,7 +117,7 @@ void searchColumn () {
 						previousButtonPressed = currentButtonPressed;
 						currentButtonPressed = key;
 				}
-//		}	
+		}	
 }
 
 void searchRow () {

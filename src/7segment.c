@@ -9,7 +9,7 @@ void initDisplay () {
 		GPIO_InitTypeDef gpio_init_s;
 	
 		// for segement A-G + DP + L1-L3
-		gpio_init_s.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | 
+		gpio_init_s.GPIO_Pin = GPIO_Pin_15 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | 
 		GPIO_Pin_11| GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14; // 
 		gpio_init_s.GPIO_Mode = GPIO_Mode_OUT; // Set as OUTPUT
 		gpio_init_s.GPIO_Speed = GPIO_Speed_100MHz; // Don't limit slew rate
@@ -20,6 +20,8 @@ void initDisplay () {
 		//for segement Digi 1 - 3
 		gpio_init_s.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13;
 		GPIO_Init(GPIOB,&gpio_init_s); //
+	
+		
 	
 }
 
@@ -69,7 +71,7 @@ void TIM3_IRQHandler() {
 // mode = 0 => normal mode , mode = 1 => display game correct answer
 void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation) {
 		
-		GPIO_ResetBits(GPIOE, GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10| GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14);
+		GPIO_ResetBits(GPIOE, GPIO_Pin_15 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10| GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14);
 		GPIO_SetBits(GPIOB, GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13);
 	
 	
@@ -88,10 +90,11 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation) {
 		// degree sign always ON
 		GPIO_SetBits(GPIOE, GPIO_Pin_11);
 		
+		
 		switch (digit) {
 			
 			case '0':
-					GPIO_SetBits(GPIOE, GPIO_Pin_3);
+					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_4);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
@@ -103,14 +106,14 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation) {
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
 			break;
 			case '2':
-					GPIO_SetBits(GPIOE, GPIO_Pin_3);
+					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_4);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_7);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
 			case '3':
-					GPIO_SetBits(GPIOE, GPIO_Pin_3);
+					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_4);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
@@ -123,14 +126,14 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation) {
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
 			case '5':
-					GPIO_SetBits(GPIOE, GPIO_Pin_3);
+					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
 			case '6':
-					GPIO_SetBits(GPIOE, GPIO_Pin_3);
+					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_7);
@@ -138,12 +141,12 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation) {
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
 			case '7':
-					GPIO_SetBits(GPIOE, GPIO_Pin_3);
+					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_4);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
 			break;
 			case '8':
-					GPIO_SetBits(GPIOE, GPIO_Pin_3);
+					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_4);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
@@ -152,7 +155,7 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation) {
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
 			case '9':	
-					GPIO_SetBits(GPIOE, GPIO_Pin_3);
+					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_4);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
