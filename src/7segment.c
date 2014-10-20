@@ -166,26 +166,12 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
-			case 'Y':
-					GPIO_SetBits(GPIOE, GPIO_Pin_4);
-					GPIO_SetBits(GPIOE, GPIO_Pin_5);
-					GPIO_SetBits(GPIOE, GPIO_Pin_8);
-					GPIO_SetBits(GPIOE, GPIO_Pin_9);
-					GPIO_SetBits(GPIOE, GPIO_Pin_6);
-			break;
 			case 'E':
 					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_7);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);				
-			break;
-			case 'S':
-					GPIO_SetBits(GPIOE, GPIO_Pin_15);
-					GPIO_SetBits(GPIOE, GPIO_Pin_5);
-					GPIO_SetBits(GPIOE, GPIO_Pin_6);
-					GPIO_SetBits(GPIOE, GPIO_Pin_8);
-					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
 			case 'L':
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);

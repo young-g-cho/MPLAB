@@ -95,7 +95,7 @@ int main(){
 							else if (refresh == 2)
 							numDisplay(0,'0',2,0);
 							else if (refresh == 3)
-							numDisplay(0,'S',3,0);
+							numDisplay(0,'5',3,0);
 							else 
 							numDisplay(0,'E',4,0);							
 						}	
