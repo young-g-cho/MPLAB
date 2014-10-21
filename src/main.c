@@ -7,7 +7,7 @@
 #include "7segment.h"
 #include "keypad.h"
 #include "game.h"
-//#include "servoControl.c"
+
 
 
 memsReading data;
@@ -36,7 +36,7 @@ int main(){
 	initKeypad ();
 	intiTIMAndNVIC ();
 	initLED ();
-	//initPanel();
+
 	
 	initFilter(&x);
 	initFilter(&y);
@@ -59,7 +59,6 @@ int main(){
 				filterAdd(&z,data.z);
 				toAngles(&data, x.average, y.average, z.average);
 				
-				printf("pitch: %f, roll: %f \n", data.pitch, data.roll);
 				
 			} 	
 		 
