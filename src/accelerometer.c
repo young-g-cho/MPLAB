@@ -76,15 +76,16 @@ void EXTI0_IRQHandler () {
 }
 
 memsReading getReading() {
-	uint8_t Buffer[6];
+	//uint8_t buffer[6];
+	int32_t buffer[3];
 	memsReading data;
 
-	LIS302DL_Read(Buffer, 0x29, 6);
+	//LIS302DL_Read(Buffer, 0x29, 6);
+	LIS302DL_ReadACC(buffer);
 	
-	
-	data.x = (int8_t)(Buffer[0]) * 18 - X_OFFSET;
-	data.y = (int8_t)(Buffer[2]) * 18 - Y_OFFSET;
-	data.z = (int8_t)(Buffer[4]) * 18 - Z_OFFSET;
+	data.x = (int8_t)(buffer[0]) * 18 - X_OFFSET;
+	data.y = (int8_t)(buffer[2]) * 18 - Y_OFFSET;
+	data.z = (int8_t)(buffer[4]) * 18 - Z_OFFSET;
 	
 
 	

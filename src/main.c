@@ -59,9 +59,12 @@ int main(){
 				filterAdd(&z,data.z);
 				toAngles(&data, x.average, y.average, z.average);
 				
+				printf("pitch: %f, roll: %f \n", data.pitch, data.roll);
 				
 			} 	
-					
+		 
+		 
+			
 		 if (gameState == 1){
 					
 					userInput();
@@ -122,7 +125,7 @@ int main(){
 
 		
 
-
+ 
 	
 } //end while
 	

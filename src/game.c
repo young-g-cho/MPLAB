@@ -134,44 +134,15 @@ void isGameOver () {
 
 void printAnswer(){
 	
-	//decompose float into three digits
-	//convert from float to char array
-	sprintf(char_answer,"%f",answer);
-
+	//print out answer values to display
+	if (refresh == 1)
+		numDisplay(decimal,first,1,1);
+	else if (refresh == 2)
+		numDisplay(decimal, second, 2,1);
+	else if (refresh == 3)
+		numDisplay(decimal, third, 3, 1);
 	
-  //case with no decimals
-	if (answer >= 100){
-	
-		if (refresh == 1)
-			numDisplay(0,char_answer[0],1,1);
-		else if (refresh == 2)
-			numDisplay(0,char_answer[1],2,1);			
-		else if (refresh == 3)
-			numDisplay(0,char_answer[2],3,1);
-		
-	}
-	//case with decimal on display 2
-	else if (answer >= 10 && answer < 100){
-
-		if (refresh == 1)
-			numDisplay(0,char_answer[0],1,1);
-		else if (refresh == 2)
-			numDisplay(1,char_answer[1],2,1);			
-		else if (refresh == 3)
-			numDisplay(0,char_answer[3],3,1);
-		
-	}
-	//case with decimal on display 
-	else{
-		
-		if (refresh == 1)
-			numDisplay(1,char_answer[0],1,1);
-		else if (refresh == 2)
-			numDisplay(0,char_answer[2],2,1);			
-		else if (refresh == 3)
-			numDisplay(0,char_answer[3],3,1);
-		
-	}
+	printf("answer: %f \n", answer);
 	
 }
 
