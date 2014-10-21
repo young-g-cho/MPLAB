@@ -59,15 +59,10 @@ int main(){
 				filterAdd(&z,data.z);
 				toAngles(&data, x.average, y.average, z.average);
 				
-				//printf("x = %d\n",x.average);
-				//printf("y = %d\n",y.average);
-				//printf("z = %d\n",z.average);
-				//printf("roll = %d\n",data.roll);
-				//printf("pitch = %d\n",data.pitch);
 				
-			} else { 	
+			} 	
 					
-				if (gameState == 1){
+		 if (gameState == 1){
 					
 					userInput();
 					
@@ -79,6 +74,7 @@ int main(){
 					} 	else if(refresh == 3) {
 								numDisplay (decimal, third, 3,1);
 					}
+					
 				}
 				
 				else {
@@ -86,9 +82,11 @@ int main(){
 						if (gameState == 3)
 						{
 							printAnswer();
+							numLED = flashLED(numLED);
+																
 						}
 						
-						else
+						else if (gameState == 2)
 						{
 							if (refresh == 1)
 							numDisplay(0,'L',1,0);
@@ -97,30 +95,32 @@ int main(){
 							else if (refresh == 3)
 							numDisplay(0,'5',3,0);
 							else 
-							numDisplay(0,'E',4,0);							
+							numDisplay(0,'E',4,0);		
+
+							numLED = redLEDFlash(numLED);
+							
 						}	
+						
+						else
+						{
+						
+							//game initialization
+							if(gameInit == 0) {
+									if(delay == 30) {
+										startGame(data.roll);
+										gameInit = 1;
+										}
+				
+									else 
+									delay++;
+											
+						}
+							
+						}
 						
 					}
 
-
-							//LED blinking for player win or loss
-								if(gameState == 2) {
-									numLED = redLEDFlash(numLED);
-								} else if(gameState == 3) {
-									numLED = flashLED(numLED);
-								}	
-					//printf("%c%c%c\n",first,second,third);
-			}
-			
-			//game initialization
-			if(gameInit == 0) {
-					if(delay == 30) {
-							startGame(data.roll);
-							gameInit = 1;
-					} else {
-							delay++;
-					}				
-			}
+		
 
 
 	
