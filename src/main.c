@@ -15,9 +15,9 @@ memsReading data;
 volatile uint_fast16_t tick = 0;
 volatile uint_fast16_t refresh = 0;
 
-uint8_t first;
-uint8_t second;
-uint8_t third;
+uint8_t first;  //variable for first digit
+uint8_t second; //variable for second digit
+uint8_t third;  //variable for third digit
 uint8_t decimal = 0;
 uint8_t gameState;    //1 for playing, 2 for gameOver(player loss) 3 for gameOver(player Win)
 uint8_t numLED = 0;				//LED tracker
@@ -27,8 +27,16 @@ MovingAverageFilter x;
 MovingAverageFilter y;
 MovingAverageFilter z;
 
+
+/**
+*	@brief initialize everything and play the game!!
+*	@retval returns 0
+*/
+
 int main(){
 	
+	
+	//initialize everything needed
 	initForGpio ();
 	initAccelerometer ();
 	intiEXTI0AndNVIC () ;
@@ -47,9 +55,9 @@ int main(){
 	
 
 	
-	while(1){
+	while(1){ // infinite loop
 		
-			if(tick) {
+			if(tick) { //when ticked get the data, add to filter, convert to angles
 				
 				tick = 0;
 				data = getReading();
@@ -67,13 +75,13 @@ int main(){
 				
 			} else { 	
 					
-				if (gameState == 1){
+				if (gameState == 1){ //user is playing the game
 					
-					userInput();
+					userInput(); //wait for user input
 					
-					//update screen if game is not over
+					//update screen if game is not over set the desired numbers to the display
 						if(refresh == 1) {
-								numDisplay (decimal, first, 1,1);
+								numDisplay (decimal, first, 1,1); 
 					} 	else if(refresh == 2) {
 								numDisplay (decimal, second,2,1);
 					} 	else if(refresh == 3) {
@@ -83,7 +91,7 @@ int main(){
 				
 				else {
 						
-						if (gameState == 3)
+						if (gameState == 3) // if player won the game, display YES
 						{
 							numDisplay(0,'Y',1,0);
 							numDisplay(0,'E',2,0);
@@ -91,7 +99,7 @@ int main(){
 						
 						}
 						
-						else
+						else //if player losed, display LOSE
 						{
 							numDisplay(0,'L',1,0);
 							numDisplay(0,'0',2,0);

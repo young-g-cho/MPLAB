@@ -1,6 +1,9 @@
 #include "filter.h"
 
-
+/**
+*	@brief initialize the moving average filter
+*	@param *filter: address of the starting point of the filter
+*/
 void initFilter (MovingAverageFilter *filter) {
 	
 		filter->max_elements = FILTER_DEPTH;
@@ -13,13 +16,11 @@ void initFilter (MovingAverageFilter *filter) {
 }
 
 
-/*
-Function Filter Update
-filter: moving average filter structure 
-new_Value: next value to be filtered
-
-This function implements a moving average filter of sample size
-FILTER_DEPTH. 
+/**
+*	@brief Updates the filter
+*	@param filter: moving average filter structure 
+*	@param new_Value: next value to be filtered
+*	@description This function implements a moving average filter of sample size FILTER_DEPTH. 
 */
 void filterAdd (MovingAverageFilter *filter, int32_t new_Value) {
 	int32_t old_Value;

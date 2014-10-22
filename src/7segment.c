@@ -9,8 +9,8 @@ void initDisplay () {
 		GPIO_InitTypeDef gpio_init_s;
 	
 		// for segement A-G + DP + L1-L3
-		gpio_init_s.GPIO_Pin = GPIO_Pin_15 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | 
-		GPIO_Pin_11| GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14; // 
+		gpio_init_s.GPIO_Pin = GPIO_Pin_15 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | //8 segments of the display 
+		GPIO_Pin_11| GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14; // dots, and degree sign
 		gpio_init_s.GPIO_Mode = GPIO_Mode_OUT; // Set as OUTPUT
 		gpio_init_s.GPIO_Speed = GPIO_Speed_100MHz; // Don't limit slew rate
 		gpio_init_s.GPIO_OType = GPIO_OType_PP; // Push-pull
@@ -25,27 +25,31 @@ void initDisplay () {
 	
 }
 
-void intiTIMAndNVIC () {
+/*!
+*		@brief initializes the timer and the NVIC for the timer
+*/
+
+void intiTIMAndNVIC () { 
 	
 		NVIC_InitTypeDef initNVIC;
 		TIM_TimeBaseInitTypeDef initTIM;
 			
 		// enable GPIO clocks
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);												//for GPIO TIM3
+		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);	//for GPIO TIM3
 	
-		initNVIC.NVIC_IRQChannel =  TIM3_IRQn ;
-		initNVIC.NVIC_IRQChannelPreemptionPriority = 0;
-		initNVIC.NVIC_IRQChannelSubPriority = 1;
-		initNVIC.NVIC_IRQChannelCmd = ENABLE;
+		initNVIC.NVIC_IRQChannel =  TIM3_IRQn ; //set NVIC to the correct timer as we will use timer 3
+		initNVIC.NVIC_IRQChannelPreemptionPriority = 0; // highest type of priority
+		initNVIC.NVIC_IRQChannelSubPriority = 1;  // if it needs to wait, set as next highest priority
+		initNVIC.NVIC_IRQChannelCmd = ENABLE; //enable the channel
 		
-		NVIC_Init(&initNVIC);
+		NVIC_Init(&initNVIC); //initialize
 	
 		/* Time base configuration */
 	
-		initTIM.TIM_Period = 3000; // 
+		initTIM.TIM_Period = 3000; // since we use three of the displays and we want 100Hz for each, we set it to 3000
 		initTIM.TIM_Prescaler = 42; // 
-		initTIM.TIM_ClockDivision = 0;
-		initTIM.TIM_CounterMode = TIM_CounterMode_Up;
+		initTIM.TIM_ClockDivision = 0; //not need for this
+		initTIM.TIM_CounterMode = TIM_CounterMode_Up; //set the mode to count upwards
 		TIM_TimeBaseInit(TIM3, &initTIM);
 		
 		/* TIM3 enable counter */
@@ -54,30 +58,45 @@ void intiTIMAndNVIC () {
 		TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
 
 }
-
+/**
+*		@brief handles the interrupt for timer 3
+*/
 void TIM3_IRQHandler() {
 	
-		if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET) {
+		if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET) { //when the status of the timer isnt RESET then check the refresh param
 			
 				if(refresh > 3) {
-						refresh = 0;
-				} else {
+						refresh = 0; //if greater than 3, reset it
+				} else { 				//else increment it
 						refresh ++;																																							//max 4 
 				}
-					TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+					TIM_ClearITPendingBit(TIM3, TIM_IT_Update); // clears the pending bit of the interrupt update source
 		}
 }
 
-// mode = 0 => normal mode , mode = 1 => display game correct answer
+
+/**
+* @brief determines what is to be displayed on the 7 segment LED
+*
+* @param mode: the current mode of the display
+*					@arg 0: normal mode where user is imputting values
+*					@arg 1: display current game's answer
+*	@param digit: desired number to be displayed
+*					@args first, second, third: param where number is held
+*	@param updateLocation: which 7 segment to affect
+*					@args 1,2,3: desired display segments
+*	@param degree_on: turn on or off the degree sign
+*					@args 0,1: off or on respectively
+*/
 void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t degree_on) {
-		
+		//first reset all pins and set pin for ?????????????????????????????
 		GPIO_ResetBits(GPIOE, GPIO_Pin_15 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10| GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14);
 		GPIO_SetBits(GPIOB, GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14);
 	
 	
-		if(updateLocation == 1) {
+		if(updateLocation == 1) { // if in the first digit to set, reset pin ??????????????????????????????????
 				GPIO_ResetBits(GPIOB, GPIO_Pin_11);
-				if(mode == 1)
+				if(mode == 1)  													
 						GPIO_SetBits(GPIOE, GPIO_Pin_10);
 		} else if (updateLocation == 2) {
 				GPIO_ResetBits(GPIOB, GPIO_Pin_12);
@@ -95,9 +114,9 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 			GPIO_SetBits(GPIOE, GPIO_Pin_11);
 		
 		
-		switch (digit) {
+		switch (digit) {//segments to set to achieve desired numbers
 			
-			case '0':
+			case '0': 
 					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_4);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
@@ -166,28 +185,28 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
-			case 'Y':
+			case 'Y': //Y in Yes
 					GPIO_SetBits(GPIOE, GPIO_Pin_4);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 			break;
-			case 'E':
+			case 'E': // E in yEs and losE
 					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_7);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);				
 			break;
-			case 'S':
+			case 'S': // S in yeS and loSe
 					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
-			case 'L':
+			case 'L': // L in Lose
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_7);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);	
