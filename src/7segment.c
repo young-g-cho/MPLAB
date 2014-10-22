@@ -15,11 +15,11 @@ void initDisplay () {
 		gpio_init_s.GPIO_Speed = GPIO_Speed_100MHz; // Don't limit slew rate
 		gpio_init_s.GPIO_OType = GPIO_OType_PP; // Push-pull
 		gpio_init_s.GPIO_PuPd = GPIO_PuPd_NOPULL; // Not input, don't pull
-		GPIO_Init(GPIOE,&gpio_init_s); //
+		GPIO_Init(GPIOE,&gpio_init_s); 
 	
 		//for segement Digi 1 - 4
 		gpio_init_s.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14;
-		GPIO_Init(GPIOB,&gpio_init_s); //
+		GPIO_Init(GPIOB,&gpio_init_s); 
 	
 		
 	
@@ -79,7 +79,7 @@ void TIM3_IRQHandler() {
 * @brief determines what is to be displayed on the 7 segment LED
 *
 * @param mode: the current mode of the display
-*					@arg 0: normal mode where user is imputting values
+*					@arg 0: normal mode where user is inputting values
 *					@arg 1: display current game's answer
 *	@param digit: desired number to be displayed
 *					@args first, second, third: param where number is held
@@ -89,13 +89,13 @@ void TIM3_IRQHandler() {
 *					@args 0,1: off or on respectively
 */
 void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t degree_on) {
-		//first reset all pins and set pin for ?????????????????????????????
+		//first reset all pins and set pin for initializing the 7segemnt display
 		GPIO_ResetBits(GPIOE, GPIO_Pin_15 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10| GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14);
 		GPIO_SetBits(GPIOB, GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14);
 	
 	
-		if(updateLocation == 1) { // if in the first digit to set, reset pin ??????????????????????????????????
-				GPIO_ResetBits(GPIOB, GPIO_Pin_11);
+		if(updateLocation == 1) { 																			// the location of the 7segment display. The bits will be held low for the display we want to change while others held high
+				GPIO_ResetBits(GPIOB, GPIO_Pin_11);						//mode determines the decimal point for displaying the correct angle to user.
 				if(mode == 1)  													
 						GPIO_SetBits(GPIOE, GPIO_Pin_10);
 		} else if (updateLocation == 2) {
@@ -114,7 +114,7 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 			GPIO_SetBits(GPIOE, GPIO_Pin_11);
 		
 		
-		switch (digit) {//segments to set to achieve desired numbers
+		switch (digit) {																											//segments to set to achieve desired numbers
 			
 			case '0': 
 					GPIO_SetBits(GPIOE, GPIO_Pin_15);
@@ -185,7 +185,6 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
-<<<<<<< HEAD
 			case 'Y': //Y in Yes
 					GPIO_SetBits(GPIOE, GPIO_Pin_4);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
@@ -194,16 +193,12 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 			break;
 			case 'E': // E in yEs and losE
-=======
-			case 'E':
->>>>>>> origin/master
 					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_7);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);				
 			break;
-<<<<<<< HEAD
 			case 'S': // S in yeS and loSe
 					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
@@ -212,13 +207,9 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
 			case 'L': // L in Lose
-=======
-			case 'L':
->>>>>>> origin/master
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_7);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);	
 			break;
 		}
-	
 }

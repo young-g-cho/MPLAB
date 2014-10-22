@@ -19,6 +19,10 @@ float answer;
 
 extern uint_fast16_t refresh;
 
+
+/**
+*	@brief initializes the game
+*/
 void startGame (float angle) {
 	
 		answer = angle;
@@ -30,6 +34,7 @@ void startGame (float angle) {
 		gameState = 1;
 
 }
+
 /**
 *	@brief compare user's input to correct angle
 */
@@ -54,23 +59,18 @@ void checkAnswer () {
 		}
 }
 /**
-*	@brief sets the number of button pressed of calls checkAnswer
+*	@brief checks the useinput and calls checkAnswer
 */
 void userInput () {
 	
 			keyState(); //checks state of button
 				
 			uint8_t key = getKey(); //gets the actual button that was pressed
-				
-			if(key != 0x0 && buttonState != KEY_STILL_PRESSED) { //if the key is being pressed and key is not zero then 
-				
-<<<<<<< HEAD
-				if(key == 'A' || key == 'B' || key == 'C' || key == 'D' || key == '*' || key == '#')  {//if key is non-alphanumeric, then compare with answer
-=======
-			if(key != 0x0) {
+
+			if(key != 0x0) {// key is being pressed
 				//key is non-alphanumeric
 				if(key == 'A' || key == 'B' || key == '*' || key == '#')  {
->>>>>>> origin/master
+
 					checkAnswer();
 						
 					if(gameState == 1) {//since game is not over, reset and start again
@@ -79,24 +79,14 @@ void userInput () {
 						third = '0';
 						numKeyPressed = 0;
 					}
-						
-<<<<<<< HEAD
-				} 
-				
-//				else if(key == '#'){											//this is the delete key if we want to put it in there
-//					if(numKeyPressed >0){
-//					numKeyPressed--;
-//					}
-//				}
-				else {//this is where it sets the numbers into the variables for them
-=======
-				} else if(key == 'C') {
+
+				} else if(key == 'C') { //clear the all the button that has been pressed for current chance
 						first = '0';
 						second = '0';
 						third = '0';
 						numKeyPressed =0;
 
-				} else if ( key == 'D' ) {
+				} else if ( key == 'D' ) { //deletes the previouse button pressed
 					if(third != '0' && second == '0' && first == '0') {
 							third = '0';
 					} else if(second != '0' && first == '0') {
@@ -110,8 +100,7 @@ void userInput () {
 					
 					numKeyPressed--;
 					
-				} else {
->>>>>>> origin/master
+				} else {	//updates the number that has been pressed by the user
 						if(numKeyPressed == 0) {
 								third = key;
 								numKeyPressed++;
@@ -184,10 +173,4 @@ void printAnswer(){
 	else if (refresh == 3)
 		numDisplay(decimal, third, 3, 1);
 	
-	//printf("answer: %f \n", answer);
-	
 }
-
-
-
-

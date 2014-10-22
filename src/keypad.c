@@ -31,13 +31,13 @@ void rowAsInput () {
 		gpio_init_s.GPIO_Speed = GPIO_Speed_100MHz; // Don't limit slew rate
 		gpio_init_s.GPIO_OType = GPIO_OType_PP; // Push-pull
 		gpio_init_s.GPIO_PuPd = GPIO_PuPd_UP; //set pins as 1
-		GPIO_Init(GPIOD,&gpio_init_s); //
+		GPIO_Init(GPIOD,&gpio_init_s); 
 	
 		//COLUMNS
 		gpio_init_s.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10;//7=column 1, 8=column 2, 9=column 3 and 10=column 4
 		gpio_init_s.GPIO_Mode = GPIO_Mode_OUT; // set as output
 		gpio_init_s.GPIO_PuPd = GPIO_PuPd_DOWN; //set to 0
-		GPIO_Init(GPIOD,&gpio_init_s); //
+		GPIO_Init(GPIOD,&gpio_init_s); 
 	
 }
 /**
@@ -53,13 +53,13 @@ void columnAsInput () {
 		gpio_init_s.GPIO_Speed = GPIO_Speed_100MHz; // Don't limit slew rate
 		gpio_init_s.GPIO_OType = GPIO_OType_PP; // Push-pull
 		gpio_init_s.GPIO_PuPd = GPIO_PuPd_DOWN; // set to 0
-		GPIO_Init(GPIOD,&gpio_init_s); //
+		GPIO_Init(GPIOD,&gpio_init_s); 
 	
 		//COLUMNS
 		gpio_init_s.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10;//7=column 1, 8=column 2, 9=column 3 and 10=column 4
 		gpio_init_s.GPIO_Mode = GPIO_Mode_IN; // Set as input
 		gpio_init_s.GPIO_PuPd = GPIO_PuPd_UP; // set to 1
-		GPIO_Init(GPIOD,&gpio_init_s); //
+		GPIO_Init(GPIOD,&gpio_init_s); 
 	
 	
 }
@@ -68,16 +68,16 @@ void columnAsInput () {
 */
 void keyState () {
 			
-		searchColumn(); //check columns
+		searchColumn();																																	 //check columns
 
-		if(buttonState == KEY_RELEASED){// if it is not being pressed any longer then set param to 0
+		if(buttonState == KEY_RELEASED){																				// if it is not being pressed any longer then set param to 0
 				currentButtonPressed = 0x0;
 				return;
 		}
 		
-		searchRow(); //if not columns, then check the rows
+		searchRow(); 																																		//if button has been pressed, then check the rows
 		
-		if(currentButtonPressed == previousButtonPressed){// if button being pressed is still the same button, then set state to STILL PRESSED
+		if(currentButtonPressed == previousButtonPressed){				// if button being pressed is still the same button, then set state to STILL PRESSED
 				buttonState = KEY_STILL_PRESSED;	
 		}	
 }
