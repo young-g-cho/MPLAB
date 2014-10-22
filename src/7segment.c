@@ -21,8 +21,6 @@ void initDisplay () {
 		gpio_init_s.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14;
 		GPIO_Init(GPIOB,&gpio_init_s); 
 	
-		
-	
 }
 
 /*!

@@ -45,7 +45,7 @@ void checkAnswer () {
 		if((guess < (answer + 4))  && (guess > (answer - 4))) {//if guess in with 4 of answer, then 
 			//show correct answer(Game end state for player win)
 			gameState = 3;
-			showAnswer();
+			showAnswer(answer);
 		} else if (guess < (answer - 4)) {//if guess is less by more than 4, then set blue LED and check if game is over
 			// blue LED
 			GPIO_ResetBits(GPIOD, GPIO_Pin_14);
@@ -120,30 +120,30 @@ void userInput () {
 /**
 *	@brief displays the correct angle
 */
-void showAnswer () {
+void showAnswer (float angle) {
 	
-		if(answer >= 100){													//if answer has three digits, set each digit to its corresponding character and set them 
-				first = answer / 100 + '0';
-				answer = (uint16_t) answer % 100;
-				second = answer / 10 + '0';
-				answer = (uint16_t) answer % 10;
-				third = answer + '0';
+		if(angle >= 100){													//if answer has three digits, set each digit to its corresponding character and set them 
+				first = angle / 100 + '0';
+				angle = (uint16_t) angle % 100;
+				second = angle / 10 + '0';
+				angle = (uint16_t) angle % 10;
+				third = angle + '0';
 				decimal = 0;
-		} else if( answer <100 && answer >= 10) {		//if answer has two digits, set each digit to its corresponding character and set them with 1 decimal
-				answer *= 10;
-				first = answer / 100 + '0';
-				answer = (uint16_t) answer % 100;
-				second = answer / 10 + '0';
-				answer = (uint16_t) answer % 10;
-				third = answer + '0';
+		} else if( angle <100 && angle >= 10) {		//if answer has two digits, set each digit to its corresponding character and set them with 1 decimal
+				angle *= 10;
+				first = angle / 100 + '0';
+				angle = (uint16_t) angle % 100;
+				second = angle / 10 + '0';
+				angle = (uint16_t) angle % 10;
+				third = angle + '0';
 				decimal = 2;	
 		} else {																		//if answer has 1 digits, set each digit to its corresponding character and set them with 2 decimal accuracy
-				answer *= 100;
-				first = answer / 100 + '0';
-				answer = (uint16_t) answer % 100;
-				second = answer / 10 + '0';
-				answer = (uint16_t) answer % 10;
-				third = answer + '0';
+				angle *= 100;
+				first = angle / 100 + '0';
+				angle = (uint16_t) angle % 100;
+				second = angle / 10 + '0';
+				angle = (uint16_t) angle % 10;
+				third = angle + '0';
 				decimal = 1;
 		}
 		

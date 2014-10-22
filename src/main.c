@@ -85,6 +85,12 @@ int main(){
 					time++;  //using as flashing LED timer 50Hz
 
 				}
+				
+				
+				//shows the angle in 7segment display(angles need to be hard coded
+			//	showAnswer(data.roll);
+			//	printAnswer();
+			
 
 				if (gameState == 1){ //game is currently being played
 								
@@ -105,7 +111,6 @@ int main(){
 									
 					if (gameState == 3)	{// if player won the game
 							printAnswer();
-							//numLED = flashLED(numLED);
 					}else if (gameState == 2)	{//if player losed, display LOSE
 						
 								if (refresh == 1)
@@ -116,8 +121,6 @@ int main(){
 										numDisplay(0,'5',3,0);
 								else 
 										numDisplay(0,'E',4,0);		
-
-								//numLED = redLEDFlash(numLED);
 										
 					} else { //game not has been initialized yet
 									
