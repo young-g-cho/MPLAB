@@ -6,8 +6,8 @@
 .\obj\servocontrol.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmFunc.h
 .\obj\servocontrol.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm4_simd.h
 .\obj\servocontrol.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include\system_stm32f4xx.h
-.\obj\servocontrol.o: C:\MPLAB\RTE\Device\STM32F407VG\stm32f4xx_conf.h
-.\obj\servocontrol.o: C:\MPLAB\RTE\RTE_Components.h
+.\obj\servocontrol.o: E:\Course Materials\ECSE 426\MPLAB\RTE\Device\STM32F407VG\stm32f4xx_conf.h
+.\obj\servocontrol.o: E:\Course Materials\ECSE 426\MPLAB\RTE\RTE_Components.h
 .\obj\servocontrol.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_adc.h
 .\obj\servocontrol.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include\stm32f4xx.h
 .\obj\servocontrol.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_crc.h

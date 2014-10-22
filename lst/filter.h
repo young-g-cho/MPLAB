@@ -1,6 +1,6 @@
 #include <stdint.h>               
 
-#define FILTER_DEPTH 100
+#define FILTER_DEPTH 20
 
 //declare the filter structure that will be used to
 //implement the moving average filter
@@ -18,3 +18,4 @@ typedef struct Filter
 
 void initFilter (MovingAverageFilter *filter);
 void filterAdd(MovingAverageFilter *filter, int32_t new_Value);
+

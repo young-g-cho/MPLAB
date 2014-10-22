@@ -3,6 +3,7 @@
 #include "accelerometer.h"
 #include <lis302dl.h>
 #include <Math.h>
+#include <stdio.h>
 
 extern uint_fast16_t tick;
 /**
@@ -11,6 +12,7 @@ extern uint_fast16_t tick;
 void initForGpio () {
 
 	GPIO_InitTypeDef gpio_init_s;
+	
 	
 	// enable GPIO clocks
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);			//for GPIO PE0
@@ -89,15 +91,31 @@ void EXTI0_IRQHandler () {
 *	@retval returns the data structure with values for x, y and z
 */
 memsReading getReading() {
-	uint8_t Buffer[6];
+	
+	int32_t buffer[3];
 	memsReading data;
 
+<<<<<<< HEAD
 	LIS302DL_Read(Buffer, 0x29, 6); //read 6 bytes of data from LIS302DL and put in buffer
 	
 	//set x,y,z values for data using equation with predetermined offsets
 	data.x = (int8_t)(Buffer[0]) * 18 - X_OFFSET; 
 	data.y = (int8_t)(Buffer[2]) * 18 - Y_OFFSET;
 	data.z = (int8_t)(Buffer[4]) * 18 - Z_OFFSET;
+=======
+	LIS302DL_ReadACC(buffer);
+	
+	int32_t x_r = buffer[1];
+	int32_t y_r = buffer[0];
+	int32_t z_r = buffer[2];	
+	
+	
+	
+	data.x = 0.9719*x_r + 0.0034*y_r - 0.0034*z_r + 33.9648;
+	data.y = 0.0041*x_r + 1.0221*y_r + 0.0125*z_r - 37.6956;
+	data.z = 0.0102*x_r + 0.0219*y_r + 0.9619*z_r + 115.2684;
+
+>>>>>>> origin/master
 	
 	return data;
 	
@@ -113,5 +131,7 @@ void toAngles(memsReading *data, int32_t x, int32_t y, int32_t z) {
 	
 	data->pitch = 90 + atan(x / (sqrt(y*y+z*z)))*(180/PI);
 	data->roll = 90 + atan(y / (sqrt(x*x+z*z)))*(180/PI);
+	
+	//printf("pitch : %f, roll: %f \n", data->pitch, data->roll);
 	
 }

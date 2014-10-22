@@ -1,17 +1,19 @@
 #include <stdint.h>
+#include <string.h>
+#include <stdio.h>
 #include "stm32f4xx.h"                  // Device header
 #include "game.h"
 #include "keypad.h"
+#include "7segment.h"
 
 extern uint8_t first;
 extern uint8_t second;
 extern uint8_t third;
 extern uint8_t decimal;
 extern uint8_t gameState;
-extern uint8_t buttonState;
+extern uint8_t chances;
 
 uint8_t numKeyPressed;
-uint8_t chances;
 
 float answer;
 
@@ -24,8 +26,9 @@ void startGame (float angle) {
 		second = '0';
 		third = '0';
 		numKeyPressed = 0;
-		chances = 3;
+		chances = NUMBER_OF_CHANCES;
 		gameState = 1;
+
 }
 /**
 *	@brief compare user's input to correct angle
@@ -61,7 +64,13 @@ void userInput () {
 				
 			if(key != 0x0 && buttonState != KEY_STILL_PRESSED) { //if the key is being pressed and key is not zero then 
 				
+<<<<<<< HEAD
 				if(key == 'A' || key == 'B' || key == 'C' || key == 'D' || key == '*' || key == '#')  {//if key is non-alphanumeric, then compare with answer
+=======
+			if(key != 0x0) {
+				//key is non-alphanumeric
+				if(key == 'A' || key == 'B' || key == '*' || key == '#')  {
+>>>>>>> origin/master
 					checkAnswer();
 						
 					if(gameState == 1) {//since game is not over, reset and start again
@@ -71,6 +80,7 @@ void userInput () {
 						numKeyPressed = 0;
 					}
 						
+<<<<<<< HEAD
 				} 
 				
 //				else if(key == '#'){											//this is the delete key if we want to put it in there
@@ -79,6 +89,29 @@ void userInput () {
 //					}
 //				}
 				else {//this is where it sets the numbers into the variables for them
+=======
+				} else if(key == 'C') {
+						first = '0';
+						second = '0';
+						third = '0';
+						numKeyPressed =0;
+
+				} else if ( key == 'D' ) {
+					if(third != '0' && second == '0' && first == '0') {
+							third = '0';
+					} else if(second != '0' && first == '0') {
+							third = second;
+							second = '0';
+					} else if(first != '0') {
+							third = second;
+							second = first;
+							first = '0';
+					}
+					
+					numKeyPressed--;
+					
+				} else {
+>>>>>>> origin/master
 						if(numKeyPressed == 0) {
 								third = key;
 								numKeyPressed++;
@@ -140,4 +173,21 @@ void isGameOver () {
 	}
 
 }
+
+void printAnswer(){
+	
+	//print out answer values to display
+	if (refresh == 1)
+		numDisplay(decimal,first,1,1);
+	else if (refresh == 2)
+		numDisplay(decimal, second, 2,1);
+	else if (refresh == 3)
+		numDisplay(decimal, third, 3, 1);
+	
+	//printf("answer: %f \n", answer);
+	
+}
+
+
+
 

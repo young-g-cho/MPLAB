@@ -702,6 +702,11 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>servoControl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\servoControl.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -107,9 +107,9 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 		} 
 			else if (updateLocation == 4){
 				GPIO_ResetBits(GPIOB, GPIO_Pin_14);
-			}
+		}
 
-		// degree sign always ON
+		// degree sign 
 		if (degree_on != 0)
 			GPIO_SetBits(GPIOE, GPIO_Pin_11);
 		
@@ -185,6 +185,7 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
+<<<<<<< HEAD
 			case 'Y': //Y in Yes
 					GPIO_SetBits(GPIOE, GPIO_Pin_4);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
@@ -193,12 +194,16 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 			break;
 			case 'E': // E in yEs and losE
+=======
+			case 'E':
+>>>>>>> origin/master
 					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_7);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);				
 			break;
+<<<<<<< HEAD
 			case 'S': // S in yeS and loSe
 					GPIO_SetBits(GPIOE, GPIO_Pin_15);
 					GPIO_SetBits(GPIOE, GPIO_Pin_5);
@@ -207,6 +212,9 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 					GPIO_SetBits(GPIOE, GPIO_Pin_9);
 			break;
 			case 'L': // L in Lose
+=======
+			case 'L':
+>>>>>>> origin/master
 					GPIO_SetBits(GPIOE, GPIO_Pin_6);
 					GPIO_SetBits(GPIOE, GPIO_Pin_7);
 					GPIO_SetBits(GPIOE, GPIO_Pin_8);	

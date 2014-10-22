@@ -1,13 +1,15 @@
 .\obj\game.o: src\game.c
 .\obj\game.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\obj\game.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\string.h
+.\obj\game.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdio.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include\stm32f4xx.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm4.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmInstr.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmFunc.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm4_simd.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include\system_stm32f4xx.h
-.\obj\game.o: C:\MPLAB\RTE\Device\STM32F407VG\stm32f4xx_conf.h
-.\obj\game.o: C:\MPLAB\RTE\RTE_Components.h
+.\obj\game.o: E:\Course Materials\ECSE 426\MPLAB\RTE\Device\STM32F407VG\stm32f4xx_conf.h
+.\obj\game.o: E:\Course Materials\ECSE 426\MPLAB\RTE\RTE_Components.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_adc.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include\stm32f4xx.h
 .\obj\game.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_crc.h
@@ -37,3 +39,4 @@
 .\obj\game.o: C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm32f4xx_fsmc.h
 .\obj\game.o: .\lst\game.h
 .\obj\game.o: .\lst\keypad.h
+.\obj\game.o: .\lst\7segment.h
