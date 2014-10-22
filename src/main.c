@@ -21,7 +21,7 @@ uint8_t third;
 uint8_t decimal = 0;
 uint8_t gameState;    //1 for playing, 2 for gameOver(player loss) 3 for gameOver(player Win)
 uint8_t numLED = 0;				//LED tracker
-
+uint8_t chances;
 
 MovingAverageFilter x;
 MovingAverageFilter y;
@@ -29,104 +29,86 @@ MovingAverageFilter z;
 
 int main(){
 	
-	initForGpio ();
-	initAccelerometer ();
-	intiEXTI0AndNVIC () ;
-	initDisplay () ;
-	initKeypad ();
-	intiTIMAndNVIC ();
-	initLED ();
+		initForGpio ();
+		initAccelerometer ();
+		intiEXTI0AndNVIC () ;
+		initDisplay () ;
+		initKeypad ();
+		intiTIMAndNVIC ();
+		initLED ();
 
-	
-	initFilter(&x);
-	initFilter(&y);
-	initFilter(&z);
-	
-	uint8_t gameInit = 0;
-	uint8_t delay =0;
-	
-
-	
-	while(1){
 		
-			if(tick) {
-				
-				tick = 0;
-				data = getReading();
-				
-				filterAdd(&x,data.x);
-				filterAdd(&y,data.y);
-				filterAdd(&z,data.z);
-				toAngles(&data, x.average, y.average, z.average);
-				
-				
-			} 	
-		 
-		 
+		initFilter(&x);
+		initFilter(&y);
+		initFilter(&z);
+		
+		uint8_t gameInit = 0;
+		uint8_t delay =0;
+
+		
+		while(1){
 			
-		 if (gameState == 1){
+				if(tick) {
 					
-					userInput();
+					tick = 0;
+					data = getReading();
 					
-					//update screen if game is not over
-						if(refresh == 1) {
-								numDisplay (decimal, first, 1,1);
-					} 	else if(refresh == 2) {
-								numDisplay (decimal, second,2,1);
-					} 	else if(refresh == 3) {
-								numDisplay (decimal, third, 3,1);
-					}
-					
-				}
-				
-				else {
-						
-						if (gameState == 3)
-						{
-							printAnswer();
-							numLED = flashLED(numLED);
-																
-						}
-						
-						else if (gameState == 2)
-						{
-							if (refresh == 1)
-							numDisplay(0,'L',1,0);
-							else if (refresh == 2)
-							numDisplay(0,'0',2,0);
-							else if (refresh == 3)
-							numDisplay(0,'5',3,0);
-							else 
-							numDisplay(0,'E',4,0);		
+					filterAdd(&x,data.x);
+					filterAdd(&y,data.y);
+					filterAdd(&z,data.z);
+					toAngles(&data, x.average, y.average, z.average);
 
-							numLED = redLEDFlash(numLED);
-							
-						}	
-						
-						else
-						{
-						
-							//game initialization
-							if(gameInit == 0) {
-									if(delay == 30) {
-										startGame(data.roll);
-										gameInit = 1;
+				} else {
+
+					 if (gameState == 1){
+								
+								userInput();
+								
+								//update screen if game is not over
+									if(refresh == 1) {
+												numDisplay (decimal, first, 1,1);
+									} else if(refresh == 2) {
+												numDisplay (decimal, second,2,1);
+									} else if(refresh == 3) {
+												numDisplay (decimal, third, 3,1);
+									} else if(refresh == 4) {
+												numDisplay (decimal, chances + '0', 4,1);
+									}
+									
+					}	else {
+									
+							if (gameState == 3)	{
+									printAnswer();
+									numLED = flashLED(numLED);
+							}else if (gameState == 2)	{
+								
+										if (refresh == 1)
+												numDisplay(0,'L',1,0);
+										else if (refresh == 2)
+												numDisplay(0,'0',2,0);
+										else if (refresh == 3)
+												numDisplay(0,'5',3,0);
+										else 
+												numDisplay(0,'E',4,0);		
+
+										numLED = redLEDFlash(numLED);
+										
+							} else {
+									
+										//game initialization
+										if(gameInit == 0) {
+												if(delay == 30) {
+													startGame(data.roll);
+													gameInit = 1;
+													} else  {
+														delay++;
+													}
+									
 										}
-				
-									else 
-									delay++;
-											
-						}
-							
-						}
-						
+							}
 					}
-
-		
-
- 
+			}
+		} //end while
 	
-} //end while
-	
-	return 0;
+		return 0;
 }

@@ -11,11 +11,9 @@ extern uint8_t second;
 extern uint8_t third;
 extern uint8_t decimal;
 extern uint8_t gameState;
-extern uint8_t buttonState;
-char char_answer [4];
+extern uint8_t chances;
 
 uint8_t numKeyPressed;
-uint8_t chances;
 
 float answer;
 
@@ -28,10 +26,9 @@ void startGame (float angle) {
 		second = '0';
 		third = '0';
 		numKeyPressed = 0;
-		chances = 3;
+		chances = NUMBER_OF_CHANCES;
 		gameState = 1;
 
-	
 }
 
 void checkAnswer () {
@@ -61,9 +58,9 @@ void userInput () {
 				
 			uint8_t key = getKey();
 				
-			if(key != 0x0 && buttonState != KEY_STILL_PRESSED) {
+			if(key != 0x0) {
 				//key is non-alphanumeric
-				if(key == 'A' || key == 'B' || key == 'C' || key == 'D' || key == '*' || key == '#')  {
+				if(key == 'A' || key == 'B' || key == '*' || key == '#')  {
 					checkAnswer();
 						
 					if(gameState == 1) {
@@ -73,6 +70,26 @@ void userInput () {
 						numKeyPressed = 0;
 					}
 						
+				} else if(key == 'C') {
+						first = '0';
+						second = '0';
+						third = '0';
+						numKeyPressed =0;
+
+				} else if ( key == 'D' ) {
+					if(third != '0' && second == '0' && first == '0') {
+							third = '0';
+					} else if(second != '0' && first == '0') {
+							third = second;
+							second = '0';
+					} else if(first != '0') {
+							third = second;
+							second = first;
+							first = '0';
+					}
+					
+					numKeyPressed--;
+					
 				} else {
 						if(numKeyPressed == 0) {
 								third = key;
@@ -142,7 +159,7 @@ void printAnswer(){
 	else if (refresh == 3)
 		numDisplay(decimal, third, 3, 1);
 	
-	printf("answer: %f \n", answer);
+	//printf("answer: %f \n", answer);
 	
 }
 

@@ -88,9 +88,9 @@ void numDisplay (uint8_t mode, uint8_t digit, uint8_t updateLocation, uint8_t de
 		} 
 			else if (updateLocation == 4){
 				GPIO_ResetBits(GPIOB, GPIO_Pin_14);
-			}
+		}
 
-		// degree sign always ON
+		// degree sign 
 		if (degree_on != 0)
 			GPIO_SetBits(GPIOE, GPIO_Pin_11);
 		
