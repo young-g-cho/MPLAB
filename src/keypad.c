@@ -102,21 +102,23 @@ void searchColumn () {
 				key = 0x8;
 		} 
 	
-		debounce();  //use the debouncing method to check for debouncing then repeat previous part for key 2
-
-				if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_7) == 0x0) {
+		if(key != 0) {
+				debounce();  //use the debouncing method to check for debouncing then repeat previous part for key 2
+		}
+		
+		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_7) == 0x0) {
 				key2 = 0x1;	
 					
 		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_8) == 0x0) {
 				key2 = 0x2;	
-					
+						
 		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_9) == 0x0) {
 				key2 = 0x4;
-					
+						
 		} else if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_10) == 0x0) {
 				key2 = 0x8;
 		} 
-		
+			
 		if(key == key2) { // if first check is the same as second time, then 
 				if(key == 0x0) {
 						buttonState = KEY_RELEASED; //if key is 0 then the state of the button is released and there was no button being pressed
@@ -126,6 +128,7 @@ void searchColumn () {
 						currentButtonPressed = key; // set the column found in current Button Pressed
 				}
 		}	
+
 }
 /**
 *	@brief search the rows for the row in which the button is being pressed

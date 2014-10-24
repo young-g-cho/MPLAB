@@ -1,5 +1,5 @@
 Dependencies for Project 'Lab 3 Base Project', Target 'Target 1': (DO NOT MODIFY !)
-F (.\src\main.c)(0x544A0C01)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I.\lst -I.\src -I.\inc -I.\Accelerometer_Drivers\inc --c99-I "E:\Course Materials\ECSE 426\MPLAB\RTE"-I "E:\Course Materials\ECSE 426\MPLAB\RTE\Device\STM32F407VG"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc-D_RTE_ -DSTM32F40_41xxx -DHSE_VALUE="8000000" -DUSE_STDPERIPH_DRIVER-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
+F (.\src\main.c)(0x544A536D)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I.\lst -I.\src -I.\inc -I.\Accelerometer_Drivers\inc --c99-I "E:\Course Materials\ECSE 426\MPLAB\RTE"-I "E:\Course Materials\ECSE 426\MPLAB\RTE\Device\STM32F407VG"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc-D_RTE_ -DSTM32F40_41xxx -DHSE_VALUE="8000000" -DUSE_STDPERIPH_DRIVER-o .\obj\main.o --omf_browse .\obj\main.crf --depend .\obj\main.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x53462C34)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include\stm32f4xx.h)(0x529EAD12)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm4.h)(0x538418B6)
@@ -236,7 +236,7 @@ I (C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc\stm3
 I (.\lst\game.h)(0x54476413)
 I (.\lst\keypad.h)(0x5446F348)
 I (.\lst\7segment.h)(0x5446F348)
-F (.\src\keypad.c)(0x5447D618)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I.\lst -I.\src -I.\inc -I.\Accelerometer_Drivers\inc --c99-I "E:\Course Materials\ECSE 426\MPLAB\RTE"-I "E:\Course Materials\ECSE 426\MPLAB\RTE\Device\STM32F407VG"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc-D_RTE_ -DSTM32F40_41xxx -DHSE_VALUE="8000000" -DUSE_STDPERIPH_DRIVER-o .\obj\keypad.o --omf_browse .\obj\keypad.crf --depend .\obj\keypad.d)
+F (.\src\keypad.c)(0x544A5599)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I.\lst -I.\src -I.\inc -I.\Accelerometer_Drivers\inc --c99-I "E:\Course Materials\ECSE 426\MPLAB\RTE"-I "E:\Course Materials\ECSE 426\MPLAB\RTE\Device\STM32F407VG"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\inc-D_RTE_ -DSTM32F40_41xxx -DHSE_VALUE="8000000" -DUSE_STDPERIPH_DRIVER-o .\obj\keypad.o --omf_browse .\obj\keypad.crf --depend .\obj\keypad.d)
 I (C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\Include\stm32f4xx.h)(0x529EAD12)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm4.h)(0x538418B6)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53462C34)

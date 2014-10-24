@@ -149,7 +149,7 @@ int main(){
 void gameSet() {
 		//game initialization
 		if(gameInit == 0) {
-				if(delay ==100) {
+				if(delay ==30) {
 						startGame(data.roll);
 						gameInit = 1;
 						delay = 0;
