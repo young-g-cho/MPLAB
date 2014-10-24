@@ -19,34 +19,22 @@ void initLED() {
 }
 
 /**
-*	@brief flash through the LEDs where one LED is turned on and previous is turned off.
+*	@brief green led flash 
 *	@param numLED: cycle number to be activated
 *				@args 1,2,3: possible cycle numbers
 *	@retval returns incremented cycle number
 */
-uint8_t flashLED(uint8_t numLED) {
-			//Cycle through indefinitely, for each run
+uint8_t greenLEDFlash(uint8_t numLED) {
+
 	
-			if(numLED == 1) {
-					GPIO_SetBits(GPIOD, GPIO_Pin_15);
-					GPIO_ResetBits(GPIOD, GPIO_Pin_12);
-					numLED++;
-			} else if(numLED == 2) {
+		if(numLED % 2 == 0) {//if cycle 1 then set the green LED
 					GPIO_SetBits(GPIOD, GPIO_Pin_12);
-					GPIO_ResetBits(GPIOD, GPIO_Pin_13);
 					numLED++;
-				
-			} else if(numLED == 3) {
-					GPIO_SetBits(GPIOD, GPIO_Pin_13);
-					GPIO_ResetBits(GPIOD, GPIO_Pin_14);
-					numLED++;
-			} else {
-					GPIO_SetBits(GPIOD, GPIO_Pin_14);
-					GPIO_ResetBits(GPIOD, GPIO_Pin_15);
+		} else {  // else turn off the green LED
+					GPIO_ResetBits(GPIOD, GPIO_Pin_12);
 					numLED = 1;
-			}
-			
-			return numLED;
+		}
+		return numLED;
 }
 /**
 *	@brief flash the red LED
@@ -57,7 +45,7 @@ uint8_t flashLED(uint8_t numLED) {
 
 uint8_t redLEDFlash (uint8_t numLED) {
 	
-		if(numLED == 1) {//if cycle 1 then set the red LED
+		if(numLED % 2 == 0) {//if cycle 1 then set the red LED
 					GPIO_SetBits(GPIOD, GPIO_Pin_14);
 					numLED++;
 		} else {  // else turn off the red LED
@@ -66,3 +54,17 @@ uint8_t redLEDFlash (uint8_t numLED) {
 		}
 		return numLED;
 }
+
+
+/**
+*	@brief LED reset LED
+*/
+
+void resetLED () {
+	GPIO_ResetBits(GPIOD, GPIO_Pin_12);
+	GPIO_ResetBits(GPIOD, GPIO_Pin_13);
+	GPIO_ResetBits(GPIOD, GPIO_Pin_14);
+	GPIO_ResetBits(GPIOD, GPIO_Pin_15);
+	
+}
+

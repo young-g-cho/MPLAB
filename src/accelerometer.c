@@ -28,13 +28,13 @@ void initForGpio () {
 	GPIO_Init(GPIOE,&gpio_init_s); 														//initialize GPIOE with the above parameters
 	
 }
+
 /**
-*	@brief initialize the Accelerometer
+*	@brief initialize mems sensor
 */
 
-void initAccelerometer () {
+void initMems () {
 	
-	uint8_t ctrl;
 	LIS302DL_InitTypeDef init;
 
 	
@@ -45,11 +45,53 @@ void initAccelerometer () {
 	init.Self_Test = LIS302DL_SELFTEST_NORMAL;									/* self test */
 	LIS302DL_Init(&init);
 	
+	LIS302DL_InterruptConfigTypeDef doubleClick;
+		
+	doubleClick.Latch_Request = LIS302DL_INTERRUPTREQUEST_LATCHED;                      // Latch interrupt request into CLICK_SRC register
+  doubleClick.SingleClick_Axes = LIS302DL_CLICKINTERRUPT_Z_ENABLE;                   // Single Click Axes Interrupts 
+  doubleClick.DoubleClick_Axes = LIS302DL_DOUBLECLICKINTERRUPT_XYZ_DISABLE;     // Double Click Axes Interrupts 
+	
+	LIS302DL_InterruptConfig(&doubleClick);	
+	
+}
+
+/**
+*	@brief initialize the Accelerometer for data ready interrupt
+*/
+
+void initAccelerometerDataReady () {
+	
+	uint8_t ctrl;
+
 	//enable data-ready interrupt
 	ctrl = 0x04;
 	LIS302DL_Write(&ctrl, LIS302DL_CTRL_REG3_ADDR, 1); //writes by using SPI connection
 
 }
+
+/**
+*	@brief initialize the Accelerometer for double click interrupt
+*/
+
+
+void initAccelerometerDoubleClick () {
+	
+	uint8_t ctrl;
+
+	//enable click interrupt	
+  ctrl=0x7;
+  LIS302DL_Write( &ctrl,LIS302DL_CTRL_REG3_ADDR, 1);
+
+	//Set the Z threshold 
+  ctrl=0x1;
+  LIS302DL_Write( &ctrl, LIS302DL_CLICK_THSZ_REG_ADDR, 1);
+
+	//Time limit
+  ctrl=0x40;
+  LIS302DL_Write( &ctrl, LIS302DL_CLICK_TIMELIMIT_REG_ADDR, 1);
+	
+}
+
 /**
 *	@brief initialize the EXTI0 and the the NVIC for it
 */
@@ -78,12 +120,15 @@ void intiEXTI0AndNVIC () {
 	NVIC_Init(&initNVIC); 													//initialize NVIC
 	
 }
+
 /**
 *	@brief handles when the external interrupt happens
 */
 void EXTI0_IRQHandler () {
 	
 	tick  = 1;
+	uint8_t crtl;
+	LIS302DL_Read(&crtl, LIS302DL_CLICK_SRC_REG_ADDR , 1);
 	EXTI_ClearFlag(LIS302DL_SPI_INT1_EXTI_LINE);//reset the interrupt flag
 }
 /**
@@ -98,14 +143,16 @@ memsReading getReading() {
 	 //read data from LIS302DL and put in buffer
 	LIS302DL_ReadACC(buffer);
 	
-	int32_t x_r = buffer[1];
-	int32_t y_r = buffer[0];
+	int32_t x_r = buffer[0];
+	int32_t y_r = buffer[1];
 	int32_t z_r = buffer[2];	
 	
 	
 	//set x,y,z values for data using least square method
-	data.x = 0.9719*x_r + 0.0034*y_r - 0.0034*z_r + 33.9648;
-	data.y = 0.0041*x_r + 1.0221*y_r + 0.0125*z_r - 37.6956;
+	data.x = 0.0041*x_r + 1.0221*y_r + 0.0125*z_r - 37.6956;
+	data.y = 0.9719*x_r + 0.0034*y_r - 0.0034*z_r + 33.9648;
+	//data.x = 0.9719*x_r + 0.0034*y_r - 0.0034*z_r + 33.9648;
+	//data.y = 0.0041*x_r + 1.0221*y_r + 0.0125*z_r - 37.6956;
 	data.z = 0.0102*x_r + 0.0219*y_r + 0.9619*z_r + 115.2684;
 
 	return data;

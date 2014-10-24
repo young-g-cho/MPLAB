@@ -17,7 +17,9 @@ typedef struct {
 
 
 void initForGpio ();
-void initAccelerometer ();
+void initMems ();
+void initAccelerometerDataReady ();
+void initAccelerometerDoubleClick ();
 void intiEXTI0AndNVIC () ;
 void EXTI0_IRQHandler ();
 memsReading getReading ();

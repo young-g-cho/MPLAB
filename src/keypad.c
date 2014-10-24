@@ -196,5 +196,4 @@ void debounce() {
 					temp = refresh;
 				}
 		}
-			
 }
