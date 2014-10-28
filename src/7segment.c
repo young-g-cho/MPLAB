@@ -9,7 +9,7 @@ void initDisplay () {
 		GPIO_InitTypeDef gpio_init_s;
 	
 		// for segement A-G + DP + L1-L3
-		gpio_init_s.GPIO_Pin = GPIO_Pin_15 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | //8 segments of the display 
+		gpio_init_s.GPIO_Pin = GPIO_Pin_15 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | //7 segments of the display 
 		GPIO_Pin_11| GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14; // dots, and degree sign
 		gpio_init_s.GPIO_Mode = GPIO_Mode_OUT; // Set as OUTPUT
 		gpio_init_s.GPIO_Speed = GPIO_Speed_100MHz; // Don't limit slew rate

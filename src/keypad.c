@@ -192,7 +192,7 @@ void debounce() {
 		uint8_t debounce = 0;
 		uint8_t temp = refresh;
 	
-		while(debounce < 3) {//using the refresh param, increment the debounce 
+		while(debounce < 1) {//using the refresh param, increment the debounce 
 				
 				if(temp + 1 == refresh || temp - 3 == refresh) {
 					debounce++;

@@ -45,13 +45,13 @@ void initMems () {
 	init.Self_Test = LIS302DL_SELFTEST_NORMAL;									/* self test */
 	LIS302DL_Init(&init);
 	
-	LIS302DL_InterruptConfigTypeDef doubleClick;
+	LIS302DL_InterruptConfigTypeDef singleClick;
 		
-	doubleClick.Latch_Request = LIS302DL_INTERRUPTREQUEST_LATCHED;                      // Latch interrupt request into CLICK_SRC register
-  doubleClick.SingleClick_Axes = LIS302DL_CLICKINTERRUPT_Z_ENABLE;                   // Single Click Axes Interrupts 
-  doubleClick.DoubleClick_Axes = LIS302DL_DOUBLECLICKINTERRUPT_XYZ_DISABLE;     // Double Click Axes Interrupts 
+	singleClick.Latch_Request = LIS302DL_INTERRUPTREQUEST_LATCHED;                      // Latch interrupt request into CLICK_SRC register
+  singleClick.SingleClick_Axes = LIS302DL_CLICKINTERRUPT_Z_ENABLE;                   // Single Click Axes Interrupts 
+  singleClick.DoubleClick_Axes = LIS302DL_DOUBLECLICKINTERRUPT_XYZ_DISABLE;     // Double Click Axes Interrupts 
 	
-	LIS302DL_InterruptConfig(&doubleClick);	
+	LIS302DL_InterruptConfig(&singleClick);	
 	
 }
 
@@ -74,7 +74,7 @@ void initAccelerometerDataReady () {
 */
 
 
-void initAccelerometerDoubleClick () {
+void initAccelerometerSingleClick () {
 	
 	uint8_t ctrl;
 

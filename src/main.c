@@ -47,7 +47,6 @@ int main(){
 		initForGpio ();
 		initMems ();
 		initAccelerometerDataReady ();
-		//initAccelerometerDoubleClick ();
 		intiEXTI0AndNVIC () ;
 		initDisplay () ;
 		initKeypad ();
@@ -81,13 +80,13 @@ int main(){
 					//printf("y = %d\n",y.average);
 					//printf("z = %d\n",z.average);
 					//printf("roll = %f\n",data.roll);
-					//printf("pitch = %f\n",data.pitch);
+					printf("pitch = %f\n",data.pitch);
 					
 					//if game is OVER then change to click interrupt. Once interrupt detected reinitialize the game
 					if(gameState > 1) {
 							
 							if(gameInit == 1){
-									initAccelerometerDoubleClick ();
+									initAccelerometerSingleClick ();
 									clickDetection = 0;
 									gameInit = 0;
 							}
@@ -96,8 +95,8 @@ int main(){
 				
 				}	
 			//shows the angle in 7segment display(angles need to be hard coded
-		//		showAnswer(data.roll);
-		//		printAnswer();
+			//	showAnswer(data.pitch);
+			//	printAnswer();
 			
 
 				if (gameState == 1) { //game is currently being played
@@ -150,7 +149,7 @@ void gameSet() {
 		//game initialization
 		if(gameInit == 0) {
 				if(delay ==30) {
-						startGame(data.roll);
+						startGame(data.pitch);
 						gameInit = 1;
 						delay = 0;
 				} 
